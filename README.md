@@ -10,3 +10,6 @@
 ```bash
 java -jar ./SunnyTangDuCodeGeneration-1.0.jar ./SunnyTangDuCodeGenerationTest.xlsx > ./out.txt
 ```
+
+### 示例
+示例 excel 文件位于项目 [example](https://github.com/Sunshine-wzy/SunnyTangDuCodeGeneration/tree/master/example) 文件夹内
