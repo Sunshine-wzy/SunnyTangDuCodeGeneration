@@ -3,12 +3,12 @@ package io.github.sunshinewzy.sunnytangducodegeneration
 import com.alibaba.excel.context.AnalysisContext
 import com.alibaba.excel.read.listener.ReadListener
 
-class CodeInformationReadListener : ReadListener<CodeInformation> {
+class ProgramCodeReadListener : ReadListener<ProgramCodeInformation> {
     
-    private val cache: MutableList<CodeInformation> = ArrayList()
+    private val cache: MutableList<ProgramCodeInformation> = ArrayList()
     
 
-    override fun invoke(info: CodeInformation, context: AnalysisContext) {
+    override fun invoke(info: ProgramCodeInformation, context: AnalysisContext) {
         cache += info
     }
 
@@ -19,15 +19,22 @@ class CodeInformationReadListener : ReadListener<CodeInformation> {
             if (info.address.isBlank() || info.content.isBlank())
                 break
             
-            println(info)
             builder.append("\$P ")
-            builder.append(info.address)
+            builder.append(info.address.replace("H$".toRegex(), ""))
             builder.append(" ")
             builder.append(binaryToHex(info.content))
-            builder.append("    ; ")
-            builder.append(info.symbol)
-            builder.append("    ")
-            builder.append(info.description)
+            
+            val symbolNotBlank = info.symbol.isNotBlank()
+            val descriptionNotBlank = info.description.isNotBlank()
+            if (symbolNotBlank || descriptionNotBlank) {
+                builder.append("    ; ")
+                if (symbolNotBlank) builder.append(info.symbol)
+                
+                if (descriptionNotBlank) {
+                    if (symbolNotBlank) builder.append("    ")
+                    builder.append(info.description)
+                }
+            }
             builder.appendLine()
         }
         builder.appendLine("; //****** End Of Main Memory Data ******//")
