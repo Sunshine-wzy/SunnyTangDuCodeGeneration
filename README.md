@@ -13,3 +13,6 @@ java -jar ./SunnyTangDuCodeGeneration-1.0.jar ./SunnyTangDuCodeGenerationTest.xl
 
 ### 示例
 示例 excel 文件位于项目 [example](https://github.com/Sunshine-wzy/SunnyTangDuCodeGeneration/tree/master/example) 文件夹内
+
+### 教程视频
+https://github.com/user-attachments/assets/fd753d9e-2a52-400b-ae74-50b84cb63bb4
